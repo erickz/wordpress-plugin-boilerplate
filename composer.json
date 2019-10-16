@@ -1,0 +1,26 @@
+{
+  "name": "erickz/wordpress-plugin-boilerplate",
+  "type": "project",
+  "description": "This is a plugin boilerplate which serves as a model and has some functions to help the developing of wordpress plugins",
+  "keywords": [
+    "medium",
+    "wordpress"
+  ],
+  "require": {
+
+  },
+  "autoload": {
+    "psr-4": {
+      "WordpressPluginBoilerplate\\Switches\\": "src/switches",
+      "WordpressPluginBoilerplate\\Registers\\": "src/registers",
+      "WordpressPluginBoilerplate\\App\\Helpers\\Globals\\": "src/app/helpers/globals",
+      "WordpressPluginBoilerplate\\Loaders\\": "src/loaders"
+    }
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
