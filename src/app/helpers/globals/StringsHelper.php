@@ -31,4 +31,15 @@ class StringsHelper
 
         return ucfirst(str_replace('-', '', lcfirst(ucwords($string, '-'))));
     }
+
+    /**
+     * Check if the given string has Its first letter capitalized
+     * @param $string
+     * @return String
+     */
+    public static function isUpper($string)
+    {
+        $chr = mb_substr ($string, 0, 1, "UTF-8");
+        return mb_strtolower($chr, "UTF-8") != $chr;
+    }
 }

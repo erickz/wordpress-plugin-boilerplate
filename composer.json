@@ -10,7 +10,8 @@
 
   },
   "autoload": {
-    "psr-4": {
+    "classmap": ["src/app/modules/BaseController.php"]
+    ,"psr-4": {
       "WordpressPluginBoilerplate\\Switches\\": "src/switches",
       "WordpressPluginBoilerplate\\Registers\\": "src/registers",
       "WordpressPluginBoilerplate\\App\\Helpers\\Globals\\": "src/app/helpers/globals",
