@@ -1,6 +1,6 @@
 # Wordpress Plugin Boilerplate
 
-**This boilerplate provides a structure with helpers, functions and loaders which helps the development of wordpress plugins**
+**This boilerplate provides a clean structure with helpers, functions and loaders which helps the development of wordpress plugins**
 
 - [Usage](#usage)
 - [Namespaces](#namespaces)
@@ -11,6 +11,7 @@
 - [Controllers](#controllers)
 - [View](#view)
 - [Helpers](#helpers)
+- [Thanks](#thanks)
 
 # <a id='usage'></a> Usage
 Simply clone: 
@@ -93,4 +94,7 @@ The class View provide the function to handle the templates of yur plugin, you m
 `View::load('myViewName', plugin_dir_name(__FILE__), $data)`
 
 # <a id='helpers'></a> Helpers
-The place for helpers is `src/app/helpers`. However there is also the globals helpers which are meant to be used in the whole plugin and not just a single module.
+The place for helpers is `src/app/helpers`. There is also the globals helpers which are meant to be used in the whole plugin and not just a single module.
+
+# <a id='thanks'></a> Thanks
+This plugin was inspired by [this project](https://github.com/DevinVinson/WordPress-Plugin-Boilerplate) and designed with the knowledge I've gathered working with Laravel and other plugins.  
