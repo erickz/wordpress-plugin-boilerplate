@@ -56,3 +56,5 @@ $pluginApp = new PluginApp($config);
 $pluginApp->execute();
 
 unset($config);
+
+//TODO: Change the swithces folder to a better name
