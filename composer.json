@@ -14,6 +14,7 @@
     ,"psr-4": {
       "WordpressPluginBoilerplate\\Switches\\": "src/switches",
       "WordpressPluginBoilerplate\\Registers\\": "src/registers",
+      "WordpressPluginBoilerplate\\Lang\\": "src/lang",
       "WordpressPluginBoilerplate\\App\\Helpers\\Globals\\": "src/app/helpers/globals",
       "WordpressPluginBoilerplate\\Loaders\\": "src/loaders"
     }
