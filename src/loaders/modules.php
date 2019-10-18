@@ -4,8 +4,6 @@ namespace WordpressPluginBoilerplate\Loaders;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-use WordpressPluginBoilerplate\App\Helpers\Globals\Strings;
-
 class Modules
 {
     protected $baseDir;
@@ -14,6 +12,14 @@ class Modules
     protected $actions;
     protected $filters;
 
+    /**
+     * Modules constructor
+     *
+     * @param string $baseDir
+     * @param array $modules
+     * @param null $actions
+     * @param null $filters
+     */
     public function __construct($baseDir = '', $modules = array(), $actions = null, $filters = null)
     {
         $this->baseDir = $baseDir;
@@ -25,26 +31,39 @@ class Modules
     }
 
     /**
-     * If the module has more than one word, then the pattern for the controller will be:
+     * Build the controllers name into the following pattern:
      * {theFirstWord}-controller.php
+     *
+     * Whether the given parameter has more than a word or not,
+     * retrieves the expected name of the controller.
+     *
      * @return String
      */
     public function getControllersName($module = '')
     {
-        $controller = ucfirst($module);
+        $firstWord = ucfirst($module);
         $arModulesName = explode('-', $module);
 
         if (count($arModulesName) > 1){
-            $controller = ucfirst($arModulesName[0]);
+            $firstWord = ucfirst($arModulesName[0]);
         }
 
-        $controller .= 'Controller';
+        $controller = $firstWord . 'Controller';
 
         return $controller;
     }
 
+    /**
+     * It loads the modules registered in the config.php file
+     * and save the successful ones in a array
+     */
     public function load()
     {
+        //If the controllers were loaded already, just return them.
+        if ($this->loadedControllers){
+            return $this->loadedControllers;
+        }
+
         foreach ($this->modules as $arModule)
         {
             $module = $arModule['name'];
@@ -67,8 +86,16 @@ class Modules
                 $this->loadedControllers[] = $controller;
             }
         }
+
+        return $this->loadedControllers;
     }
 
+    /**
+     * Instantiate the loaded controllers and by doing so executing their hooks,
+     * which should all be triggered at the controller`s __construct().
+     *
+     * @return array
+     */
     public function instantiate()
     {
         $instantiateds = [];
@@ -87,6 +114,10 @@ class Modules
         return $instantiateds;
     }
 
+    /**
+     * Execute the instantiation of controllers
+     * @return array
+     */
     public function run()
     {
         return $this->instantiate();

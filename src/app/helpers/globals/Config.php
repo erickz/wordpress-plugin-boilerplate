@@ -4,6 +4,13 @@ namespace WordpressPluginBoilerplate\App\Helpers\Globals;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * The config helper is responsible for sharing the plugin`s information across the modules
+ * and here you can also include functions related to Its info.
+ *
+ * Class Config
+ * @package WordpressPluginBoilerplate\App\Helpers\Globals
+ */
 class Config
 {
     public static $config;
