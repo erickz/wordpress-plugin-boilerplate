@@ -31,7 +31,8 @@ class Module
     }
 
     /**
-     * Build the controllers name into the following pattern:
+     * Check first if the controller was mentioned in the modules config.
+     * If the controller wasn't mentioned, build the controllers name into the following pattern:
      * {theFirstWord}-controller.php
      *
      * Whether the given parameter has more than a word or not,
@@ -41,6 +42,11 @@ class Module
      */
     public function getControllersName($module = '')
     {
+        if (isset($module['controller'])){
+            return $module['controller'];
+        }
+
+        $module = $module['name'];
         $firstWord = ucfirst($module);
         $arModulesName = explode('-', $module);
 
@@ -67,7 +73,7 @@ class Module
         foreach ($this->modules as $arModule)
         {
             $module = $arModule['name'];
-            $controller = $this->getControllersName($module);
+            $controller = $this->getControllersName($arModule);
             $fullPath = $this->baseDir . 'src/app/modules/' . $module . '/' . $controller . '.php';
 
             if(isset($arModule['is_admin'])){
