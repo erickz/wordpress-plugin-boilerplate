@@ -2,6 +2,8 @@
 
 namespace WordpressPluginBoilerplate\Lang;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class i18n
 {
     /**

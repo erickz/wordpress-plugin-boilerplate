@@ -29,19 +29,22 @@ if ( ! defined( 'WPINC' ) ) {
     die;
 }
 
+//Loads the current directory of the plugin
 $thisDir = plugin_dir_path( __FILE__ );
 
 $config = false;
+
+//Load the configs
 if (file_exists($thisDir . 'config.php')){
     $config = include($thisDir . 'config.php');
 
-    //The plugin file which is execute by wordpress to fire the plugin
+    //The plugin file which is executed by wordpress to fire the plugin
     $config['file'] = __FILE__ ;
 
-    //The directory of the plugin file, is defined
-    $config['dir'] = plugin_dir_path( __FILE__ );
+    $config['dir'] = $thisDir;
 }
 
+//If the configs aren't set, then
 if (! $config){
     die;
 }

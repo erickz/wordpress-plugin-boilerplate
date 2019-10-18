@@ -2,16 +2,24 @@
 
 namespace WordpressPluginBoilerplate\Loaders;
 
-use WordpressPluginBoilerplate\App\Helpers\Globals\Strings;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Modules
 {
     protected $baseDir;
     protected $modules;
-    protected $loadedModules;
+    protected $loadedControllers;
     protected $actions;
     protected $filters;
 
+    /**
+     * Modules constructor
+     *
+     * @param string $baseDir
+     * @param array $modules
+     * @param null $actions
+     * @param null $filters
+     */
     public function __construct($baseDir = '', $modules = array(), $actions = null, $filters = null)
     {
         $this->baseDir = $baseDir;
@@ -22,16 +30,48 @@ class Modules
         $this->load();
     }
 
+    /**
+     * Build the controllers name into the following pattern:
+     * {theFirstWord}-controller.php
+     *
+     * Whether the given parameter has more than a word or not,
+     * retrieves the expected name of the controller.
+     *
+     * @return String
+     */
+    public function getControllersName($module = '')
+    {
+        $firstWord = ucfirst($module);
+        $arModulesName = explode('-', $module);
+
+        if (count($arModulesName) > 1){
+            $firstWord = ucfirst($arModulesName[0]);
+        }
+
+        $controller = $firstWord . 'Controller';
+
+        return $controller;
+    }
+
+    /**
+     * It loads the modules registered in the config.php file
+     * and save the successful ones in a array
+     */
     public function load()
     {
-        foreach ($this->modules as $module)
-        {
-            $moduleName = $module['name'];
-            $file = $moduleName . '.php';
-            $fullPath = $this->baseDir . 'src/app/modules/' . $moduleName . '/' . $file;
+        //If the controllers were loaded already, just return them.
+        if ($this->loadedControllers){
+            return $this->loadedControllers;
+        }
 
-            if(isset($module['is_admin'])){
-                $isAdmin = $module['is_admin'];
+        foreach ($this->modules as $arModule)
+        {
+            $module = $arModule['name'];
+            $controller = $this->getControllersName($module);
+            $fullPath = $this->baseDir . 'src/app/modules/' . $module . '/' . $controller . '.php';
+
+            if(isset($arModule['is_admin'])){
+                $isAdmin = $arModule['is_admin'];
 
                 //If It requires to be in the admin page and the page loaded It's not on It, then It skip
                 if ($isAdmin && ! is_admin()){
@@ -40,32 +80,44 @@ class Modules
             }
 
             if ( file_exists( $fullPath ) ) {
+
                 require_once $fullPath;
 
-                $this->loadedModules[] = $moduleName;
+                $this->loadedControllers[] = $controller;
             }
         }
+
+        return $this->loadedControllers;
     }
 
+    /**
+     * Instantiate the loaded controllers and by doing so executing their hooks,
+     * which should all be triggered at the controller`s __construct().
+     *
+     * @return array
+     */
     public function instantiate()
     {
         $instantiateds = [];
 
-        foreach($this->loadedModules as $module){
+        foreach($this->loadedControllers as $controller){
             $baseNamespace = '\WordpressPluginBoilerplate\App\Modules\\';
-            $className = Strings::fromSnakeToCamel($module);
-            $class = $baseNamespace . $className;
+            $class = $baseNamespace . $controller;
 
             if (class_exists($class)){
                 new $class($this->actions, $this->filters);
 
-                $instantiateds[] = $className;
+                $instantiateds[] = $controller;
             }
         }
 
         return $instantiateds;
     }
 
+    /**
+     * Execute the instantiation of controllers
+     * @return array
+     */
     public function run()
     {
         return $this->instantiate();
