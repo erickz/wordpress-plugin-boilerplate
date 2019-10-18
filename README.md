@@ -82,7 +82,10 @@ The Controller is always in the root directory, if you want you can mention the 
 `['name' => 'settings-pages', 'controller' => 'MyController']`. You don't need to mention the controller`s name though, the boilerplate will look for It 
 with the same name of the folder (if the folder has more than one word, It will use just the first word).
 
-The hook classes are always passed into the `construct()` of your controllers as this: `__construct($actions, $filters)`.
+The hook classes are always passed into the `construct()` of your controllers as this: 
+
+```__construct($actions, $filters)```
+
 **Due to Wordpress nature, all hooks of your plugin that should be triggered by Wordpress must be called in the `__construct()` of the controller.**
 
 Each Controller should be an extension the `BaseController.php` (Doesn't require to be loaded, simply use with Its namespace). 
