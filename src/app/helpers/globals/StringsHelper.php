@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Class Strings
  * @package WordpressPluginBoilerplate\App\Helpers\Globals
  */
-class Strings
+class StringsHelper
 {
     /**
      * Convert the given string from snake_case to CamelCase

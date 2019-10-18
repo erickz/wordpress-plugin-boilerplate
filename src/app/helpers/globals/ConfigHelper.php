@@ -11,13 +11,27 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Class Config
  * @package WordpressPluginBoilerplate\App\Helpers\Globals
  */
-class Config
+class ConfigHelper
 {
     public static $config;
 
     public static function setConfig($config = '')
     {
         self::$config = $config;
+    }
+
+    /**
+     * Get any info you've added into your config`s file
+     * @param $index
+     * @return String
+     */
+    public static function get($index = null)
+    {
+        if (! $index || ! isset(self::$config[$index])){
+            return false;
+        }
+
+        return self::$config[$index];
     }
 
     public static function getPluginsName()
