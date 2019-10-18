@@ -8,6 +8,7 @@ return [
 
   /**
    * The modules which should be loaded, the structure is:
+   * The `is_admin` define whether the user is in the admin panel in order to execute the module
    * ['name' => 'yourModuleName', 'is_admin' => true|false]
    */
   ,'modules' => [
