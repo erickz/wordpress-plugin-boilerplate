@@ -4,7 +4,7 @@ namespace WordpressPluginBoilerplate\App\Modules;
 
 use WordpressPluginBoilerplate\Loaders\Views;
 
-class SettingsPages
+class SettingsController
 {
     /**
      * SettingsPage constructor.
@@ -27,6 +27,6 @@ class SettingsPages
 
     public function settingsPage()
     {
-        return Views::load(plugin_dir_path( __FILE__ ) . 'templates/settings-view.php');
+        return Views::load(plugin_dir_path( __FILE__ ) . 'templates/SettingsView.php');
     }
 }

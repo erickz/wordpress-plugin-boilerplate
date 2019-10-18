@@ -8,7 +8,7 @@ class Modules
 {
     protected $baseDir;
     protected $modules;
-    protected $loadedModules;
+    protected $loadedControllers;
     protected $actions;
     protected $filters;
 
@@ -22,16 +22,35 @@ class Modules
         $this->load();
     }
 
+    /**
+     * If the module has more than one word, then the pattern for the controller will be:
+     * {theFirstWord}-controller.php
+     * @return String
+     */
+    public function getControllersName($module = '')
+    {
+        $controller = ucfirst($module);
+        $arModulesName = explode('-', $module);
+
+        if (count($arModulesName) > 1){
+            $controller = ucfirst($arModulesName[0]);
+        }
+
+        $controller .= 'Controller';
+
+        return $controller;
+    }
+
     public function load()
     {
-        foreach ($this->modules as $module)
+        foreach ($this->modules as $arModule)
         {
-            $moduleName = $module['name'];
-            $file = $moduleName . '.php';
-            $fullPath = $this->baseDir . 'src/app/modules/' . $moduleName . '/' . $file;
+            $module = $arModule['name'];
+            $controller = $this->getControllersName($module);
+            $fullPath = $this->baseDir . 'src/app/modules/' . $module . '/' . $controller . '.php';
 
-            if(isset($module['is_admin'])){
-                $isAdmin = $module['is_admin'];
+            if(isset($arModule['is_admin'])){
+                $isAdmin = $arModule['is_admin'];
 
                 //If It requires to be in the admin page and the page loaded It's not on It, then It skip
                 if ($isAdmin && ! is_admin()){
@@ -40,9 +59,10 @@ class Modules
             }
 
             if ( file_exists( $fullPath ) ) {
+
                 require_once $fullPath;
 
-                $this->loadedModules[] = $moduleName;
+                $this->loadedControllers[] = $controller;
             }
         }
     }
@@ -51,15 +71,14 @@ class Modules
     {
         $instantiateds = [];
 
-        foreach($this->loadedModules as $module){
+        foreach($this->loadedControllers as $controller){
             $baseNamespace = '\WordpressPluginBoilerplate\App\Modules\\';
-            $className = Strings::fromSnakeToCamel($module);
-            $class = $baseNamespace . $className;
+            $class = $baseNamespace . $controller;
 
             if (class_exists($class)){
                 new $class($this->actions, $this->filters);
 
-                $instantiateds[] = $className;
+                $instantiateds[] = $controller;
             }
         }
 
