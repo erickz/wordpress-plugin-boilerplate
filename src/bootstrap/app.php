@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 use WordpressPluginBoilerplate\Switches\On;
 use WordpressPluginBoilerplate\Switches\Off;
 
-use WordpressPluginBoilerplate\Loaders\Modules;
+use WordpressPluginBoilerplate\Loaders\Module;
 
 //use WordpressPluginBoilerplate\Lang\i18n;
 
@@ -25,6 +25,7 @@ class PluginApp
     protected $app;
     protected $actions;
     protected $filters;
+    protected $module;
 
     /**
      * PluginApp constructor.
@@ -46,8 +47,8 @@ class PluginApp
         $this->actions = new Actions();
         $this->filters = new Filters();
 
-        //Instantiate the Modules class which loads all modules
-        $this->modules = new Modules($this->app['dir'], $this->app['modules'], $this->actions, $this->filters);
+        //Instantiate the Modules class which loads all module
+        $this->module = new Module($this->app['dir'], $this->app['modules'], $this->actions, $this->filters);
     }
 
     /**
@@ -70,7 +71,7 @@ class PluginApp
 
     public function runModules()
     {
-        $this->modules->run();
+        $this->module->run();
     }
 
     public function runActions()

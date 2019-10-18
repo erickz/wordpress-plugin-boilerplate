@@ -4,13 +4,14 @@ namespace WordpressPluginBoilerplate\App\Modules;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-use WordpressPluginBoilerplate\Loaders\Views;
+use WordpressPluginBoilerplate\App\BaseController;
+use WordpressPluginBoilerplate\Loaders\View;
 
 /**
  * Class SettingsController
  * @package WordpressPluginBoilerplate\App\Modules
  */
-class SettingsController
+class SettingsController extends BaseController
 {
     /**
      * The hooks should all be called here in the construct
@@ -42,6 +43,6 @@ class SettingsController
      */
     public function settingsPage()
     {
-        return Views::load(plugin_dir_path( __FILE__ ) . 'templates/SettingsView.php');
+        return View::load( 'settings', $this->getModulePath(__FILE__));
     }
 }

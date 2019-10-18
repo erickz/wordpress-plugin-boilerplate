@@ -4,7 +4,7 @@ namespace WordpressPluginBoilerplate\Loaders;
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-class Modules
+class Module
 {
     protected $baseDir;
     protected $modules;
