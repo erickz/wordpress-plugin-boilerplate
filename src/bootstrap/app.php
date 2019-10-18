@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 use WordpressPluginBoilerplate\Switches\On;
 use WordpressPluginBoilerplate\Switches\Off;
 

@@ -2,6 +2,8 @@
 
 namespace WordpressPluginBoilerplate\Loaders;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Views
 {
     public static function load($view = '')

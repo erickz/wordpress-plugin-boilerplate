@@ -2,6 +2,8 @@
 
 namespace WordpressPluginBoilerplate\Switches;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  * Fired when plugin is deactivated
  */

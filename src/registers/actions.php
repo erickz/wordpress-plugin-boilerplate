@@ -2,6 +2,8 @@
 
 namespace WordpressPluginBoilerplate\Registers;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 use WordpressPluginBoilerplate\Registers\hookTraits;
 
 class Actions

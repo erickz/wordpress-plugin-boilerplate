@@ -2,6 +2,8 @@
 
 namespace WordpressPluginBoilerplate\Registers;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 trait hookTraits
 {
     public function addHook(&$hooks = array(), $hook = '', $component = '', $callback = '', $priority = 99, $accepted_args = '')

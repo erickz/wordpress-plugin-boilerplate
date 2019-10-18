@@ -2,6 +2,8 @@
 
 namespace WordpressPluginBoilerplate\Loaders;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 use WordpressPluginBoilerplate\App\Helpers\Globals\Strings;
 
 class Modules

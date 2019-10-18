@@ -2,6 +2,8 @@
 
 namespace WordpressPluginBoilerplate\App\Modules;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 use WordpressPluginBoilerplate\Loaders\Views;
 
 class SettingsController

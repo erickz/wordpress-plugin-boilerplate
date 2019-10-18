@@ -2,6 +2,8 @@
 
 namespace WordpressPluginBoilerplate\App\Helpers\Globals;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Strings
 {
     public static function fromSnakeToCamel($string = null)
