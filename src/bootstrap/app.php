@@ -12,6 +12,8 @@ use WordpressPluginBoilerplate\Loaders\Modules;
 use WordpressPluginBoilerplate\Registers\Actions;
 use WordpressPluginBoilerplate\Registers\Filters;
 
+use WordpressPluginBoilerplate\App\Helpers\Globals\Config;
+
 class PluginApp
 {
     protected $app;
@@ -21,6 +23,8 @@ class PluginApp
     public function __construct($config = array())
     {
         $this->app = $config;
+
+        Config::setConfig($config);
 
         if (is_admin()){
             //Register in WP the events when the plugin is activated and desactivated
