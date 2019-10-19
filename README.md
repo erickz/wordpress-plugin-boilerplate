@@ -60,7 +60,7 @@ Each of them come with a function representing the fired state: `activated()` an
 The modules aren't autoloaded, so as stated in the [Config Section](#config), the list of modules should to be included in the `config.php`,
 so the boilerplate will look for folders with the exact same. Here is the expected structure of each module:
 
-[img]
+![modules](https://user-images.githubusercontent.com/8708483/67150447-e3f05600-f28d-11e9-9bcd-7ce7f92b383a.png)
 
 The modules are not meant to be named as domains but as subject, in a sense of being **actions united by a single purpose**, for example:
 `feature-selling` or `product-subscription`.
