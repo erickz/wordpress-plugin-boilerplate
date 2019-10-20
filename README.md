@@ -15,7 +15,7 @@
 - [Thanks](#thanks)
 
 ## Installation ##
-* If you don’t know how to install a plugin for WordPress, [here’s how](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins).
+* If you don’t know how to install a plugin for WordPress, [here’s how](https://wordpress.org/support/article/managing-plugins/).
 
 # <a id='usage'></a> Usage
 Simply clone: 
