@@ -2,6 +2,7 @@
 
 **This boilerplate provides a clean structure with helpers, functions and loaders which helps the development of wordpress plugins**
 
+- [Installation](#installation)
 - [Usage](#usage)
 - [Namespaces](#namespaces)
 - [Config](#config)
@@ -12,6 +13,9 @@
 - [View](#view)
 - [Helpers](#helpers)
 - [Thanks](#thanks)
+
+## Installation ##
+* If you don’t know how to install a plugin for WordPress, [here’s how](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins).
 
 # <a id='usage'></a> Usage
 Simply clone: 
