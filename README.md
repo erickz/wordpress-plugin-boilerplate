@@ -104,4 +104,4 @@ The class View provide the function to handle the templates of yur plugin, you m
 The place for helpers is `src/app/helpers`. There is also the globals helpers which are meant to be used in the whole plugin and not just a single module.
 
 # <a id='thanks'></a> Thanks
-This plugin was inspired by [this project](https://github.com/DevinVinson/WordPress-Plugin-Boilerplate) and designed with the knowledge I've gathered working with Laravel and other plugins.  
+This plugin was inspired by [this project](https://github.com/DevinVinson/WordPress-Plugin-Boilerplate) and designed with the knowledge I've gathered working with [Laravel](https://github.com/laravel/laravel) and other plugins.  
