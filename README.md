@@ -90,7 +90,7 @@ The hook classes are always passed into the `construct()` of your controllers as
 
 ```__construct($actions, $filters)```
 
-**Due to Wordpress nature, all hooks of your plugin that should be triggered by Wordpress must be called in the `__construct()` of the controller.**
+**Due to Wordpress structure, all hooks of your plugin that should be triggered by Wordpress must be called in the `__construct()` of the controller.**
 
 Each Controller should be an extension the `BaseController.php` (Doesn't require to be loaded, simply use with Its namespace). 
 
